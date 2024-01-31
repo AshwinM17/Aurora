@@ -6,24 +6,25 @@ class cipher {
         char key[] = "379411500469".toCharArray();
         int keycount = -1;
         String ciphertext = "";
-        System.out.println(key.length);
         for (int i = 0; i < plaintext.length; i++) {
             char e = plaintext[i];
             if (plaintext[i] >= 'a' && plaintext[i] <= 'z') {
+
                 keycount++;
                 keycount %= key.length;
                 int num = (int) (plaintext[i]) + ((key[keycount]) - '0');
-                num %= (int) ('z');
+                num %= ((int) ('z') + 1);
                 if (num < 'a') {
-                    num += 'a';
+                    num += ('a');
+                    //num--;
                 }
                 e = (char) num;
-            }
 
+            }
             ciphertext += e;
         }
 
-        System.out.println(ciphertext);
+        System.out.println("\n" + ciphertext);
 
         keycount = -1;
         String finaltext = "";
@@ -36,7 +37,7 @@ class cipher {
                 int num = (int) (ciphertxt[i]) - ((key[keycount]) - '0');
 
                 if (num < 'a') {
-                    num += 25;
+                    num += 26;
                 }
                 e = (char) num;
             }
